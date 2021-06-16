@@ -7,3 +7,25 @@
  о программа должна сообщать ему об ошибке и снова запрашивать знак операции.
  Также сообщать пользователю о невозможности деления на ноль, если он ввел 0 в качестве делителя.
 """
+
+while True:
+    operation = input('Введите операцию (= - * /) или 0 для выхода: ')
+    if operation == '0':
+        break
+    elif operation not in ('+', '-', '*', '/'):
+        print('Вы ввели неверную операцию.')
+    else:
+        a = int(input('Введите первое число : '))
+        b = int(input('Введите второе число : '))
+        
+        if operation == '+':
+            print(f'{a} + {b} = {a + b}')
+        elif operation == '-':
+            print(f'{a} - {b} = {a - b}')    
+        elif operation == '*':
+            print(f'{a} * {b} = {a * b}')
+        elif operation == '/':
+            if b == 0:
+                print('На 0 делить нельзя')
+            else:
+                print(f'{a} / {b} = {a / b}')
