@@ -3,3 +3,14 @@
 Вывод выполнить в табличной форме: по десять пар "код-символ" в каждой строке.
 """
 
+for i in range(32, 128, 10):
+    print('_' * 110 )
+    for j in range(i, i+10):
+        if j < 100:
+            print(f' {j} = {chr(j)}  ||',end='')
+        elif j > 128:
+            break
+        else:
+            print(f' {j} = {chr(j)} ||',end='')  
+print('_' * 110 )
+    
