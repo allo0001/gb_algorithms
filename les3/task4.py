@@ -10,4 +10,4 @@ el = {i: 0 for i in set(ar)}
 for i in ar:
     el[i] += 1
 
-print(max(el.values())) #переделать
+print({k: v for k, v in el.items() if v == max(el.values())}) #переделать
