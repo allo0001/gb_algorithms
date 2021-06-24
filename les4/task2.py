@@ -1,9 +1,11 @@
 import timeit
 
+COUNT = 100_000
 
+#O(n!)
 def f1(i):
-    r = [j for j in range(2, i * 100)]
-    prime = [2,]
+    r = [j for j in range(2, COUNT)]
+    prime = [2, ]
     for j, v in enumerate(r[1:]):
         flag = 1
         for n in r[:j]:
@@ -12,14 +14,13 @@ def f1(i):
                 break
         if flag:
             prime.append(v)
-        if len(prime) == i:
-            break
-    print(prime)
+        # if len(prime) > i:
+        #     break
     return prime[i]
 
-
+#O(n)
 def f2(i):
-    r = [j for j in range(i * 10)]
+    r = [j for j in range(COUNT)]
     r[1] = 0
     l = len(r)
     m = 2
@@ -31,8 +32,8 @@ def f2(i):
                 j = j + m
         m += 1
     res = [x for x in r if x > 0]
-    print(len(res))
     return res[i]
 
-print(f1(10))
-print(f2(10))
+
+print(timeit.timeit(f'f1(1_000)', globals=globals(), number=1))
+print(timeit.timeit(f'f2(1_000)', globals=globals(), number=1))
