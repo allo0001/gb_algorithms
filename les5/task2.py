@@ -4,6 +4,7 @@
 """
 n = [str(i) for i in range(10)] + ['A', 'B', 'C', 'D', 'E', 'F']
 
+
 def sum_16(x1, x2):
     x1 = x1[::-1]
     x2 = x2[::-1]
@@ -15,14 +16,37 @@ def sum_16(x1, x2):
     for i, v in enumerate(x1):
         if len(x2) > i:
             r = n.index(v) + n.index(x2[i])
-            res.append(n[r % 16 + p])
-            if r//16 == 1:
-                p = 1
-            else:
-                p = 0
         else:
-            res.append(n[n.index(v) + p])
+            r = n.index(v)
+
+        res.append(n[(r + p) % 16])
+        if (r + p)//16 == 1:
+            p = 1
+        else:
+            p = 0
+        
+    if p == 1:
+        res.append('1')
     return res[::-1] 
+
+
+def count_(x):
+    x = x[::-1]
+    c = 0
+    
+    for i, v in enumerate(x):
+        c += n.index(v) * (16 ** i)
+    return c
+
+
+def mul_16(x1, x2):
+    if len(x1) < len(x2):
+        x1, x2 = x2, x1
+    c = count_(x2)
+    res = ['0']
+    for _ in range(c):
+        res = sum_16(res, x1)
+    return res
         
 
 # a = list(input('первое число: '))
@@ -31,9 +55,10 @@ def sum_16(x1, x2):
 a = list('A2')
 b = list('C4F')
 
+
 print(a)
 print(b)
 
 print(f'Сумма : {sum_16(a, b)}')
-
+print(f'Произведение : {mul_16(a, b)}')
 
